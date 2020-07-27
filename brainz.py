@@ -1,0 +1,34 @@
+import discord
+from discord.ext import commands
+import asyncio
+import os
+import random
+username = os.getlogin()
+token = "" #insert target token
+prefix = ""
+client = discord.Client()
+message = discord.Message 
+bot = commands.Bot(command_prefix=prefix, self_bot=True)
+@bot.event
+async def on_message(message):
+    if bot.user.id == message.author.id:
+        randombrains = random.randint(1,50)
+        firstcontent = message.content
+        firstcontentlength = len(firstcontent)
+        contentbefore = ""
+        if firstcontentlength < 3:
+            pass
+        elif firstcontentlength < 5:
+            contentbefore = firstcontent[:2]
+        elif firstcontentlength > 5:
+            firstcontentnum = random.randint(1, 5)
+            contentbefore = firstcontent[:firstcontentnum]
+        
+        await message.edit(content=contentbefore + "BR" + 'A' * randombrains + "INS")
+    else:
+        pass
+
+        
+asyncio.set_event_loop(asyncio.new_event_loop())
+loop = asyncio.new_event_loop()
+bot.run(token, bot=False)
